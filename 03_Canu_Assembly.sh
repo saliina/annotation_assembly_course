@@ -13,13 +13,14 @@
 
 module load UHTS/Assembler/canu/2.1.1
 
-file_path="/data/users/sjaegers/assembly_annotation_course/participant_2/pacbio"
-out_dir="/data/users/sjaegers/assembly_annotation_course/03_Assembly"
-files="ERR3415817.fastq.gz ERR3415818.fastq.gz"
+INPUT="/data/users/sjaegers/assembly_annotation_course/participant_2/pacbio/*.fastq.gz"
+OUTPUT="/data/users/sjaegers/assembly_annotation_course/03_Assembly/Canu"
+
 gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY"
 
+mkdir $OUTPUT
 
-# what is the genome size?
-for file in $files; do
-  canu -p pacbio_canu -d $out_dir genomeSize=124m -pacbio $file_path/$file maxThreads=16 maxMemory=64
-done
+cd /data/users/sjaegers/assembly_annotation_course/
+
+
+canu -p pacbio_canu -d $OUTPUT genomeSize=124m -pacbio $INPUT maxThreads=16 maxMemory=64

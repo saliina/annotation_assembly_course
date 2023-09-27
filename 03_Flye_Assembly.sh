@@ -12,6 +12,11 @@
 
 module load UHTS/Assembler/flye/2.8.3
 
+INPUT='/data/users/sjaegers/assembly_annotation_course/participant_2/pacbio/*'
+OUTPUT='/data/users/sjaegers/assembly_annotation_course/03_Assembly/Flye'
+
+mkdir $OUTPUT
+
 cd /data/users/sjaegers/assembly_annotation_course/
 
-flye -t 16 -o ./03_Assembly --pacbio-raw ./participant_2/pacbio/*
+flye -t 16 -o $OUTPUT --pacbio-raw $INPUT --genome-size 124m

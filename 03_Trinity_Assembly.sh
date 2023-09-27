@@ -12,6 +12,12 @@
 
 module load UHTS/Assembler/trinityrnaseq/2.5.1
 
+INPUT_LEFT='/data/users/sjaegers/assembly_annotation_course/participant_2/RNAseq/ERR754061_1.fastq.gz'
+INPUT_RIGHT='/data/users/sjaegers/assembly_annotation_course/participant_2/RNAseq/ERR754061_2.fastq.gz'
+OUTPUT='/data/users/sjaegers/assembly_annotation_course/03_Assembly/Trinity'
+
+mkdir $OUTPUT
+
 cd /data/users/sjaegers/assembly_annotation_course/
 
-Trinity --seqType fq --left ./participant_2/RNAseq/ERR754061_1.fastq.gz --right ./participant_2/RNAseq/ERR754061_2.fastq.gz --CPU 12 --max_memory 48G
+Trinity --seqType fq --left $INPUT_LEFT --right $INPUT_RIGHT --CPU 12 --max_memory 48G --output $OUTPUT --SS_lib_type RF
