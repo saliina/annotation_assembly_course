@@ -6,8 +6,8 @@
 #SBATCH --job-name=canu
 #SBATCH --mail-user=salina.jaegers@students.unibe.ch
 #SBATCH --mail-type=end,fail
-#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output_fastqc_%j.o
-#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error_fastqc_%j.e
+#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output_assembly_%j.o
+#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error_assembly_%j.e
 #SBATCH --partition=pall
 
 
