@@ -16,11 +16,11 @@ module load UHTS/Assembler/canu/2.1.1
 INPUT="/data/users/sjaegers/assembly_annotation_course/participant_2/pacbio/*.fastq.gz"
 OUTPUT="/data/users/sjaegers/assembly_annotation_course/03_Assembly/Canu"
 
-gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY"
+
 
 mkdir $OUTPUT
 
 cd /data/users/sjaegers/assembly_annotation_course/
 
 
-canu -p pacbio_canu -d $OUTPUT genomeSize=124m -pacbio $INPUT maxThreads=16 maxMemory=64
+canu -p pacbio_canu -d $OUTPUT genomeSize=124m -pacbio $INPUT maxThreads=16 maxMemory=64 gridEngineResourceOption="--cpus-per-task=THREADS --mem-per-cpu=MEMORY --time=2-00:00:00"
