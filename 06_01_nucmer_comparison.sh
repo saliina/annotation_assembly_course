@@ -5,9 +5,9 @@
 #SBATCH --time=06:00:00
 #SBATCH --job-name=nucmer_comparison
 #SBATCH --mail-user=salina.jaegers@students.unibe.ch
-#SBATCH --mail-type=begin,end,fail
-#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output_nucmer_comparison_%j.o
-#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error_nucmer_comparison_%j.e
+#SBATCH --mail-type=end,fail
+#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output/output_nucmer_comparison_%j.o
+#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error/error_nucmer_comparison_%j.e
 #SBATCH --partition=pall
 
 ### Run this script 2 times.
@@ -15,26 +15,33 @@
 #2. assembly_name=flye; assembly=${polish_evaluation_dir}/polish/pilon/flye/flye.fasta
 
 #Add the modules
-    module add UHTS/Analysis/mummer/4.0.0beta1
+module add UHTS/Analysis/mummer/4.0.0beta1
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-    assembly_name=canu
-    # assembly_name=flye
+#ASSEMBLY_NAME=canu
+#ASSEMBLY_NAME_DIR=Canu
+ASSEMBLY_NAME=flye
+ASSEMBLY_NAME_DIR=Flye
 
 #Specify directory structure and create them
 BASE=/data/users/sjaegers/assembly_annotation_course
 RAW_DATA=$BASE/rawdata
     COMPARISON=$BASE/06_Comparison
         NUCMER=$COMPARISON/Nucmer
-            NUCMER_ASSEMBLY=$NUCMER/$ASSEMBLY_NAME_DIR
+            POLISHED=$NUCMER/Polished
+            #POLISHED=$NUCMER/Non-polished
+                NUCMER_ASSEMBLY=$POLISHED/$ASSEMBLY_NAME_DIR
     
 mkdir $COMPARISON
 mkdir $NUCMER
+mkdir $POLISHED
 mkdir $NUCMER_ASSEMBLY
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-ASSEMBLY=$BASE/04_Polish/Pilon/Canu/canu.fasta #Polished canu assembly
-#ASSEMBLY=$BASE/04_Polish/Pilon/Flye/flye.fasta #Polished flye assembly
+#ASSEMBLY=$BASE/04_Polish/Pilon/Canu/canu.fasta #Polished canu assembly
+ASSEMBLY=$BASE/04_Polish/Pilon/Flye/flye.fasta #Polished flye assembly
+#ASSEMBLY=$BASE/03_Assembly/Canu/pacbio_canu.contigs.fasta
+#ASSEMBLY=$BASE/03_Assembly/Flye/assembly.fasta
 
 #Specify the reference genome
 REFERENCE=$RAW_DATA/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa

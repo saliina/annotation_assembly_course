@@ -5,9 +5,9 @@
 #SBATCH --time=06:00:00
 #SBATCH --job-name=QUAST_evaluation
 #SBATCH --mail-user=salina.jaegers@students.unibe.ch
-#SBATCH --mail-type=begin,end,fail
-#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output_QUAST_evaluation_%j.o
-#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error_QUAST_evaluation_%j.e
+#SBATCH --mail-type=end,fail
+#SBATCH --output=/data/users/sjaegers/assembly_annotation_course/output/output_QUAST_evaluation_%j.o
+#SBATCH --error=/data/users/sjaegers/assembly_annotation_course/error/error_QUAST_evaluation_%j.e
 #SBATCH --partition=pall
 
 ### Run this script 4 times.
@@ -20,17 +20,17 @@
 module add UHTS/Quality_control/quast/4.6.0
 
 #Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-ASSEMBLY_NAME=canu
-ASSEMBLY_NAME_DIR=Canu
-#ASSEMBLY_NAME=flye
-#ASSEMBLY_NAME_DIR=Flye
+#ASSEMBLY_NAME=canu
+#ASSEMBLY_NAME_DIR=Canu
+ASSEMBLY_NAME=flye
+ASSEMBLY_NAME_DIR=Flye
 
 #Specify directory structure and create them
 BASE=/data/users/sjaegers/assembly_annotation_course
 RAW_DATA=$BASE/rawdata
     EVALUATION=$BASE/05_Evaluation
-        POLISH=$EVALUATION/with_polish
-        #POLISH=$EVALUATION/no_polish #Use this instead of the upper one when analysing the not polished assemblies
+        #POLISH=$EVALUATION/with_polish
+        POLISH=$EVALUATION/no_polish #Use this instead of the upper one when analysing the not polished assemblies
             QUAST=$POLISH/QUAST
                 QUAST_ASSEMBLY=$QUAST/$ASSEMBLY_NAME_DIR
                     NO_REFERENCE=$QUAST_ASSEMBLY/no_reference
@@ -42,10 +42,10 @@ mkdir $NO_REFERENCE
 mkdir $WITH_REFERENCE
 
 #Specify the assembly to use (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
-ASSEMBLY=$BASE/04_Polish/Pilon/Canu/canu.fasta #Polished canu assembly
+#ASSEMBLY=$BASE/04_Polish/Pilon/Canu/canu.fasta #Polished canu assembly
 #ASSEMBLY=$BASE/03_Assembly/Canu/pacbio_canu.contigs.fasta #Unpolished canu assembly
 #ASSEMBLY=$BASE/04_Polish/Pilon/Flye/flye.fasta #Polished flye assembly
-#ASSEMBLY=$BASE/03_Assembly/Flye/assembly.fasta #Unpolished flye assembly
+ASSEMBLY=$BASE/03_Assembly/Flye/assembly.fasta #Unpolished flye assembly
 
 #Copy reference to Raw Data
 ln -s /data/courses/assembly-annotation-course/references/Arabidopsis_thaliana.TAIR10.dna.toplevel.fa $RAW_DATA
