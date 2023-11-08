@@ -13,22 +13,25 @@
 
 
 
-COURSEDIR = /data/courses/assembly-annotation-course
-WORKDIR = /data/users/sjaegers/assembly_annotation_course/07_Annotation/EDTA
-ASSEMBLY = /data/users/sjaegers/assembly_annotation_course/04_Polish/Pilon/Flye/flye.fasta
-CDS = /data/courses/assembly-annotation-course/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated 
+COURSEDIR=/data/courses/assembly-annotation-course
+  CDS=$COURSEDIR/CDS_annotation/TAIR10_cds_20110103_representative_gene_model_updated 
+BASE=/data/users/sjaegers/assembly_annotation_course
+  WORKDIR=$BASE/07_Annotation/EDTA
+  ASSEMBLY=$BASE/04_Polish/Pilon/Flye
+RAWDATA=$BASE/rawdata
 
-mkdir /data/users/sjaegers/assembly_annotation_course/07_Annotation
-mkdir /data/users/sjaegers/assembly_annotation_course/07_Annotation/EDTA
+mkdir $BASE/07_Annotation
+mkdir $WORKDIR
 
 cd $WORKDIR
 
 singularity exec \
 --bind $COURSEDIR \
 --bind $WORKDIR \
+--bind $ASSEMBLY \
 $COURSEDIR/containers2/EDTA_v1.9.6.sif \
 EDTA.pl \
-  --genome $ASSEMBLY  \
+  --genome $ASSEMBLY/flye.fasta  \
   --species others \
   --step all \
   --cds $CDS \
