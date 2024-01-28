@@ -11,7 +11,7 @@ setwd("/data/users/sjaegers/assembly_annotation_course/08_Parser")
 
 ## Import the modified output from parseRM.pl ending with "landscape.Div.Rname.tab
 # dat <- fread("Austriaca_review4.FINAL_top9_Syri.fa.mod.out.landscape.Div.Rname.tab_R")
-dat <- fread("flye_polished_final.fasta.mod.out.landscape.Div.Rname.tab")
+dat <- fread("flye_final.fasta.mod.out.landscape.Div.Rname.tab")
 colnames(dat) <- c("Rname", "Rclass", "Rfam", 1:50)
 dat <- dat %>%
     separate(Rname, into = c("TE", "Num"), sep = "_") %>%
@@ -59,14 +59,6 @@ rep_table_stat <- setDT(rep_uncounted)[, list(Mean = mean(age), Max = max(age), 
 p1 <- ggplot(rep_table.m, aes(fill = Superfamily, x = age, weight = value / 1000000)) +
     geom_bar() +
     cowplot::theme_cowplot() +
-    geom_vline(
-        xintercept = 11.48, color = "red",
-        linetype = "dashed", size = 1
-    ) +
-    geom_vline(
-        xintercept = 32.42, color = "blue",
-        linetype = "dashed", size = 1
-    ) +
     scale_fill_brewer(palette = "Paired") +
     xlab("TE age (Myr)") +
     ylab("Sequence (Mbp)") +
