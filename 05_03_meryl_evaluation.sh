@@ -22,7 +22,6 @@ BASE=/data/users/sjaegers/assembly_annotation_course
     
 mkdir $MERYL
 
-######CHANGE THIS LINK BROOOOO#####
 #Specify where the raw reads are stored (no soft link)
 SOURCE_DATA=/data/courses/assembly-annotation-course/raw_data/An-1/participant_2/Illumina
 
