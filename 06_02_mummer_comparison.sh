@@ -18,7 +18,7 @@
 module add UHTS/Analysis/mummer/4.0.0beta1
 export PATH=/software/bin:$PATH
 
-#Specify name of assembly (!!!COMMENT OUT THE ONE YOU ARE NOT USING!!!)
+#Specify name of assembly 
 ASSEMBLY_NAME=canu
 ASSEMBLY_NAME_DIR=Canu
 #ASSEMBLY_NAME=flye
@@ -59,10 +59,3 @@ cd $MUMMER_ASSEMBLY
 
 #Run mummerplot to show results
 mummerplot -f -l -R $REFERENCE -Q $ASSEMBLY --large --png $DELTA -p $ASSEMBLY_NAME #png output does not work since there is no gnuplot on cluster, do it locally
-        #Options entered here are:
-            #"-f": Only display alignments which represent the "best" one-to-one mapping of reference and query subsequences (requires delta formatted input)
-            #"-l": Layout a multiplot by ordering and orienting sequences such that the largest hits cluster near the main diagonal (requires delta formatted input)
-            #"-R": Generate a multiplot by using the order and length information contained in this file, either a FastA file of the desired reference sequences or a tab-delimited list of sequence IDs, lengths and orientations [ +-]
-            #"-Q": Generate a multiplot by using the order and length information contained in this file, either a FastA file of the desired query sequences or a tab-delimited list of sequence IDs, lengths and orientations [ +-]
-            #"--large": Set the output size to small, medium or large --small --medium --large
-            #"--png": Set the output terminal to x11, postscript or png
