@@ -27,6 +27,3 @@ GENOME=$OUTPUT/flye.fasta.mod.out
 perl parseRM.pl -i $GENOME -l 50,1 -v
 
 sed '1d;3d' $OUTPUT/flye.fasta.mod.out.landscape.Div.Rname.tab > $OUTPUT/flye_final.fasta.mod.out.landscape.Div.Rname.tab
-
-
-#he shows table, put same format in report -> picture on phone from 25.10.
